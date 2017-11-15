@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+</head>
+<body>
+<img id="pic" src="images/01big.jpg" alt="1">
+<button id="btn">切换图片</button>
+<script src="base.js"></script>
+<script>
+  //点击时，img的图片地址会按照顺序进行更改
+  //分析规律
+  //"images/01big.jpg"
+  //"images/02big.jpg"
+  //"images/03big.jpg"
+  //"images/04big.jpg"
+  //"images/05big.jpg"
+
+  var pic=id("pic");
+  var btn=id("btn");
+
+  //点击事件
+  btn.onclick=function() {
+
+       if(pic.alt<5){
+           pic.alt++;
+         //获取图片
+          pic.src="images/0" + pic.alt + "big.jpg";
+        }else{
+         pic.alt=1;
+           pic.src="images/0" + pic.alt + "big.jpg";
+       }
+
+   };
+
+
+
+
+</script>
+</body>
+</html>

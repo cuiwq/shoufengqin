@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>今天天气不错</title>
+  <style>
+    .colorOrange {
+      background-color: orange !important;
+    }
+  </style>
+</head>
+<body>
+
+<ul>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+  <li>我是li</li>
+</ul>
+
+<script>
+  //1 获取元素
+  var lis = document.getElementsByTagName("li");
+  //2 遍历，添加背景色
+  for (var i = 0; i < lis.length; i++) {
+    if (i % 2 == 0) {
+      lis[i].style.backgroundColor = "red";
+    } else {
+      lis[i].style.backgroundColor = "pink";
+    }
+    
+    //当鼠标移入某一个li时，设置当前li更改为橘黄色，移出后，再还原为原本颜色
+    //除了可以使用style的方式修改样式，还可以通过类名修改样式
+    lis[i].onmouseover = function () {
+//      this.style.backgroundColor = "orange";
+      this.className = "colorOrange";
+    };
+    lis[i].onmouseout = function () {
+//      this.style.backgroundColor = "";
+      this.className = "";
+    };
+  }
+
+
+</script>
+</body>
+</html>

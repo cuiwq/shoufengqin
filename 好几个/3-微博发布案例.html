@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    .box {
+      width: 600px;
+      margin: 100px auto;
+      border: 1px solid #000;
+      padding: 20px;
+    }
+    
+    textarea {
+      width: 450px;
+      height: 160px;
+      outline: none;
+      resize: none;
+    }
+    
+    ul {
+      width: 450px;
+      padding-left: 80px;
+    }
+    
+    ul li {
+      line-height: 25px;
+      border-bottom: 1px dashed #cccccc;
+    }
+    
+    input {
+      float: right;
+    }
+  
+  
+  </style>
+</head>
+<body>
+<div class="box" id="weibo">
+  <span>微博发布</span>
+  <textarea name="" id="txt" cols="30" rows="10"></textarea>
+  <button id="btn">发布</button>
+  <ul id="ul">
+  
+  </ul>
+</div>
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+  $(function () {
+    //表单元素的内容操作使用 .val();
+    
+    //1 点击按钮，根据textArea的内容创建一个li，并且放入到ul中
+    //2 放入位置应当为ul中的最前面  prepend()
+    //3 设置完毕后，进行内容的清除
+    //4 给每一个行设置删除按钮(根据样式，推荐使用input button)，点击设置删除操作即可
+    
+    //获取文本域
+    var $txt = $("#txt");
+    //添加点击事件
+    $("#btn").click(function () {
+      //创建li的结构
+      var $li = $("<li>" + $txt.val() + "</li>");
+      //给li内创建删除按钮，并放入到li中，同时设置点击事件操作
+      $("<input type='button' value='删除'>").appendTo($li).click(function () {
+        //删除当前li即可
+        $(this).parent().remove();
+      });
+      //将创建的li放入到ul中
+      $("#ul").prepend($li);
+      
+      //内容清空
+      $txt.val("");
+    });
+    
+  });
+</script>
+</body>
+</html>

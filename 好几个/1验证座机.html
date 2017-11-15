@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style type="text/css">
+  body {
+    background: #ccc;
+  }
+  
+  label {
+    width: 40px;
+    display: inline-block;
+  }
+  
+  span {
+    color: red;
+  }
+  
+  .container {
+    margin: 100px auto;
+    width: 400px;
+    padding: 50px;
+    line-height: 40px;
+    border: 1px solid #999;
+    background: #efefef;
+  }
+  
+  span {
+    margin-left: 30px;
+    font-size: 12px;
+  }
+  
+  .wrong {
+    color: red
+  }
+  
+  .right {
+    color: green;
+  }
+  
+  .defau {
+    width: 200px;
+    height: 20px;
+  }
+  
+  .de1 {
+    background-position: 0 -20px;
+  }
+</style>
+<body>
+<div class="container">
+  <label>座机</label><input type="text" id="ipt"><span></span><br/>
+</div>
+<script>
+  //座机的格式
+  // 区号-电话号  区号 3或4位的数值   电话号 7或8位的电话
+  //区号的首位一定是0
+ 
+  
+  
+  //1 获取元素
+  var ipt = document.getElementById("ipt");
+  //2 给ipt添加事件
+  ipt.onblur = function () {
+    
+  };
+
+
+</script>
+</body>
+</html>
