@@ -1,0 +1,135 @@
+    <!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .box {
+      width: 350px;
+      height: 350px;
+      margin: 100px;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+    
+    .big {
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 360px;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      display: none;
+    }
+    
+    .mask {
+      width: 175px;
+      height: 175px;
+      background: rgba(255, 255, 0, 0.4);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      cursor: move;
+      display: none;
+    }
+    
+    .small {
+      
+      position: relative;
+      
+    }
+    
+    .aaa {
+      vertical-align: middle;
+    }
+    
+    .big {
+      position: relative;
+      top: -350px;
+    }
+    
+    .big img {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+<div class="box" id="box">
+  <!--左侧的盒子-->
+  <div class="small">
+    <!--图片-->
+    <img src="images/small.webp" width="350" class="aaa" alt=""/>
+    <!--黄色小盒子-->
+    <div class="mask"></div>
+  </div>
+  <!--右侧的盒子-->
+  <div class="big">
+    <!--右侧盒子内的大图片-->
+    <img src="images/big.jpg" width="800" alt=""/>
+  </div>
+</div>
+<script>
+  //简单步骤分析：
+  //1 鼠标移入移出设置中间的黄色盒子和右侧的大盒子显示隐藏
+  //2 让内部的黄盒子居中跟随鼠标
+  //3 边界检测
+  //4 设置右侧大图的对应运动
+  
+  
+  //具体实现：
+  //1 获取元素
+  var box = document.getElementById("box");//大盒子
+  var leftBox = box.children[0];
+  var mask = leftBox.children[1];//遮罩层(黄色盒子)
+  var rightBox = box.children[1];
+  var bigImg = rightBox.children[0];
+  
+  //大盒子添加移入移出效果
+  box.onmouseover = function(){
+    mask.style.display = "block";
+    rightBox.style.display = "block";
+  };
+   box.onmouseout = function(){
+    mask.style.display = "none";
+    rightBox.style.display = "none";
+  };
+
+  //设置mask的居中跟随效果
+  leftBox.onmousemove = function(){
+    var e = e || window.event;
+    //计算出要设置给mask的left和top
+    var x = e.clientX - box.offsetLeft - mask.offsetWidth / 2;
+    var y = e.clientY - box.offsetTop - mask.offsetHeight / 2;
+    // 对x和y的值进行范围限定，然后再进行设置
+    x = x < 0 ? 0 : x;//最小值
+    y = y < 0 ? 0 : y;//最大值
+    var maxLeft = leftBox.offsetWidth - mask.offsetWidth;//left最大值
+    var maxTop = leftBox.offsetHeight - mask.offsetHeight;//top最大值
+    x = x > maxLeft ? maxLeft : x;
+    y = y > maxTop ? maxTop : y;
+    //设置mask的left和top值
+    mask.style.left = x + "px";
+    mask.style.top = y + "px";
+
+
+    //设置右面大图对应的运动
+    //运动相反，先计算比例
+    var x_bili = leftBox.offsetWidth / bigImg.offsetWidth;
+    var y_bili = leftBox.offsetHeight / bigImg.offsetHeight;
+    //设置反向运动效果
+    bigImg.style.left = -x / x_bili + "px";
+    bigImg.style.top = -y / y_bili + "px";
+
+  }
+
+
+
+</script>
+</body>
+</html>
