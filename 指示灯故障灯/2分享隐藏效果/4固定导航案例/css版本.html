@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+    }
+    
+    img {
+      vertical-align: top;
+    }
+    
+    .main {
+      margin: 0 auto;
+      width: 1000px;
+      margin-top: 10px;
+    }
+    
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+  <script src="../jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //页面滚动时，检测，如果页面的卷曲高度>顶部盒子的高度，设置导航盒子定位，给主体盒子设置marginTop
+      
+      $(window).scroll(function () {
+        var $navBar = $("#navBar");
+        if ($(this).scrollTop() > $("#topPart").height()) {
+          //设置导航盒子定位
+          $navBar.addClass("fixed").next().css("marginTop", $navBar.height() + 10);
+        } else {
+          $navBar.removeClass("fixed").next().css("marginTop", 10);
+          
+        }
+      });
+    })
+  </script>
+</head>
+<body>
+<div class="top" id="topPart">
+  <img src="images/top.png" alt=""/>
+</div>
+<div class="nav" id="navBar">
+  <img src="images/nav.png" alt=""/>
+</div>
+<div class="main" id="mainPart">
+  <img src="images/main.png" alt=""/>
+</div>
+</body>
+</html>

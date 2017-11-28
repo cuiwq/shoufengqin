@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>五角星评分案例</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    .comment {
+      font-size: 40px;
+      color: teal;
+    }
+    
+    .comment li {
+      float: left;
+    }
+    
+    ul {
+      list-style: none;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      var kXin = "☆";
+      var sXin = "★";
+      var count;
+      
+      
+      //一共有三种操作效果
+      
+      var $lis = $("li");
+      //1 鼠标移入:
+      //.prevAll() 获取当前元素的前面的所有元素
+      $lis.mouseenter(function () {
+        //当前li和前面的所有li变为实心
+        //$(this).text(sXin).prevAll().text(sXin);
+        //设置当前li后面的所有li为空心
+        //nextAll()后面的所有元素
+        //$(this).nextAll().text(kXin);
+        
+        
+        //合并操作
+        //为了完善链式编程的写法，提供了以end()方法，用于返回上一次操作的对象
+        //console.log($(this).text(sXin).prevAll().text(sXin));//this的prevAll()
+        //console.log($(this).text(sXin).prevAll().text(sXin).end());//this
+        $(this).text(sXin).prevAll().text(sXin).end().nextAll().text(kXin)
+      });
+      
+      
+      //2 鼠标移出
+      $(".comment").mouseleave(function () {
+        //将所有的li设置文本为空心星星
+        $lis.text(kXin);
+        
+        //4 为点击的li进行效果设置：点击的li和前面的li设置为实心文本
+        //$lis.eq(count).text(sXin).prevAll().text(sXin);
+        
+        $(".active").text(sXin).prevAll().text(sXin);
+        
+      });
+      
+      //3 鼠标点击
+      $lis.click(function () {
+        //通过观察我们发现，执行点击效果后，并不会立刻出现效果，而是在移出后显示的效果变化了
+        
+        //如何让鼠标移出时知道哪个li时点击过的li？
+        //方式1：通过变量记录当前li的索引值
+        //count = $(this).index();
+        
+        //方式2：通过类名标记的方式
+        //注意：设置后，需要将其他的li可能存在的active类名进行删除
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+      
+    })
+  </script>
+</head>
+
+<body>
+<ul class="comment">
+  <li>☆</li>
+  <li>☆</li>
+  <li>☆</li>
+  <li>☆</li>
+  <li>☆</li>
+</ul>
+</body>
+
+</html>
