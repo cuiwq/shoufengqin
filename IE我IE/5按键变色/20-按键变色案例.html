@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .wrap {
+      width: 400px;
+      height: 400px;
+      margin: 100px auto 0;
+    }
+    
+    .wrap h1 {
+      text-align: center;
+    }
+    
+    .wrap div {
+      width: 400px;
+      height: 300px;
+      background: purple;
+      font-size: 30px;
+      text-align: center;
+      line-height: 300px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //当键盘按键按下时，设置span的内容为keyCode属性值，通过修改bgChange的背景色
+      
+      var $span = $("#keyCodeSpan");
+      var $bgChange = $("#bgChange");
+      
+      $(document).keydown(function (e) {
+        var keyCode = e.keyCode;
+  
+        //直接给span设置文本内容为keyCode的值即可
+        $span.text(keyCode);
+        
+        //根据keyCode设置bgChange的背景色
+        var color = "";//可以通过变量保存要设置的值的方式使代码更短
+        switch(keyCode){
+          case 49:
+            color = "red";
+            break;
+          case 50:
+            color = "pink";
+            break;
+          case 51:
+            color = "yellow";
+            break;
+          case 52:
+            color = "green";
+            break;
+        }
+        
+        $bgChange.css("backgroundColor",color);
+  
+  
+      })
+      
+    });
+  </script>
+</head>
+
+<body>
+<div class="wrap">
+  <h1>按键改变颜色</h1>
+  
+  <div id="bgChange">keyCode为：<span id="keyCodeSpan"></span></div>
+</div>
+</body>
+
+</html>
